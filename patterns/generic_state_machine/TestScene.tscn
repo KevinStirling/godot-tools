@@ -40,7 +40,7 @@ position = Vector2(199, 184)
 shape = SubResource("RectangleShape2D_1nheb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(565, 358)
+position = Vector2(562, -423)
 zoom = Vector2(0.3, 0.3)
 
 [editable path="CharacterBody2D"]
