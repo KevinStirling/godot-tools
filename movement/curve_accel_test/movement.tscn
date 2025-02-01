@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnri4fphk1k5i"]
+
+[ext_resource type="Script" uid="uid://d3e12wsbe4yav" path="res://movement/curve_accel_test/move_with_curve.gd" id="1_hho41"]
+[ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://icon.svg" id="2_r043h"]
+
+[sub_resource type="Curve" id="Curve_hho41"]
+_data = [Vector2(0.00854702, 0.0224719), 0.0, 0.0, 0, 0, Vector2(0.495727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrj2w"]
+
+[sub_resource type="Curve2D" id="Curve2D_hho41"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 800, 100)
+}
+point_count = 2
+
+[node name="Movement" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." node_paths=PackedStringArray("path")]
+script = ExtResource("1_hho41")
+path = NodePath("Path2D")
+position_curve = SubResource("Curve_hho41")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_r043h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_xrj2w")
+
+[node name="Path2D" type="Path2D" parent="StaticBody2D"]
+curve = SubResource("Curve2D_hho41")
