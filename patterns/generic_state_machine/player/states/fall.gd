@@ -2,6 +2,8 @@ extends State
 
 @export var idle_state: State
 @export var move_state: State
+@export var jetpack_state: State
+
 @export var air_accel: float = 7.0
 
 var momentum: float
@@ -11,6 +13,8 @@ func enter() -> void:
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
+	if Input.is_action_pressed("jetpack"):
+		return jetpack_state
 
 	var input_dir = Input.get_axis('left', 'right')
 	var movement = input_dir * move_speed

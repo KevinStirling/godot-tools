@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bh03lt5cv3kmt"]
+[gd_scene load_steps=5 format=3 uid="uid://bh03lt5cv3kmt"]
 
 [ext_resource type="PackedScene" uid="uid://bebloh2vhdisj" path="res://patterns/generic_state_machine/player/player.tscn" id="1_64ixd"]
+[ext_resource type="Script" path="res://patterns/generic_state_machine/player/states/jetpack.gd" id="2_ogp6j"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_patvf"]
 
@@ -9,38 +10,50 @@ size = Vector2(375, 20)
 
 [node name="NodeBasedState" type="Node2D"]
 
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_64ixd")]
+position = Vector2(571, 0)
+JUMP_VELOCITY = -50.0
+
+[node name="StateMachine" parent="CharacterBody2D" index="2" node_paths=PackedStringArray("current_state")]
+current_state = NodePath("Idle")
+
+[node name="Move" parent="CharacterBody2D/StateMachine" index="2"]
+move_speed = 800.0
+
+[node name="Jump" parent="CharacterBody2D/StateMachine" index="3" node_paths=PackedStringArray("jetpack_state")]
+jetpack_state = NodePath("../Jetpack")
+jump_force = 750.0
+jump_timer_max = 0.2
+jump_boost = 1.0
+
+[node name="Fall" parent="CharacterBody2D/StateMachine" index="4" node_paths=PackedStringArray("jetpack_state")]
+jetpack_state = NodePath("../Jetpack")
+
+[node name="Jetpack" type="Node" parent="CharacterBody2D/StateMachine" index="5" node_paths=PackedStringArray("fall_state", "idle_state", "move_state")]
+script = ExtResource("2_ogp6j")
+fall_state = NodePath("../Fall")
+idle_state = NodePath("../Idle")
+move_state = NodePath("../Move")
+
 [node name="Floor" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(588, 645)
 shape = SubResource("WorldBoundaryShape2D_patvf")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_64ixd")]
-position = Vector2(571, 0)
-JUMP_VELOCITY = -50.0
-
-[node name="Move" parent="CharacterBody2D/StateMachine" index="1"]
-move_speed = 800.0
-
-[node name="Jump" parent="CharacterBody2D/StateMachine" index="2"]
-jump_force = 750.0
-jump_timer_max = 0.2
-air_accel = 100.0
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Platform" type="StaticBody2D" parent="."]
 position = Vector2(924, 478)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 shape = SubResource("RectangleShape2D_1nheb")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(199, 184)
+[node name="Platform2" type="StaticBody2D" parent="."]
+position = Vector2(199, 251)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
 shape = SubResource("RectangleShape2D_1nheb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(562, -423)
-zoom = Vector2(0.3, 0.3)
+position = Vector2(576, 324)
 
 [editable path="CharacterBody2D"]

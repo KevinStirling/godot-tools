@@ -1,6 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://jtas3c31phrn"]
+[gd_scene load_steps=4 format=3 uid="uid://jtas3c31phrn"]
 
 [ext_resource type="Script" uid="uid://dbuqibe1ua2r7" path="res://patterns/generic_state_machine/state/state_machine.gd" id="1_wbto3"]
+[ext_resource type="Theme" uid="uid://b0lv1c3jf48vi" path="res://themes/debug_panel.tres" id="2_4q6kf"]
+[ext_resource type="Script" uid="uid://c0n2jwhsn86v5" path="res://patterns/generic_state_machine/state/debug.gd" id="2_6hrno"]
 
 [node name="StateMachine" type="Node"]
 script = ExtResource("1_wbto3")
+
+[node name="DebugPanel" type="Control" parent="." node_paths=PackedStringArray("watch_node")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("2_4q6kf")
+script = ExtResource("2_6hrno")
+watch_node = NodePath("..")
+watch_list = Array[String](["current_state"])
+
+[node name="PanelContainer" type="PanelContainer" parent="DebugPanel"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugPanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugPanel/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="CenterContainer" parent="DebugPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugPanel/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+text = "Player State"
+
+[node name="PropContainer" type="PanelContainer" parent="DebugPanel/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PropList" type="VBoxContainer" parent="DebugPanel/PanelContainer/MarginContainer/VBoxContainer/PropContainer"]
+unique_name_in_owner = true
+layout_mode = 2

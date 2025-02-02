@@ -1,14 +1,22 @@
 extends Node
+# if this is a node, it will have absolute positioning
+# if this is a node2d, it will have its position tied to parent
 
 @export var starting_state: State
-
-var current_state: State
+@export var current_state: State
+# @export var debug_offset: Vector2:
+# 	get: 
+# 		return debug_offset
+# 	set(value):
+# 		debug_offset = value
+# 		%DebugPanel.position = debug_offset
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
 func init(parent: Player) -> void:
 	for child in get_children():
-		child.parent = parent
+		if child is State:
+			child.parent = parent
 
 	change_state(starting_state)
 
