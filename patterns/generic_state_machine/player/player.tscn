@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://bebloh2vhdisj"]
 
-[ext_resource type="Script" uid="uid://dcbk531crt4v1" path="res://patterns/generic_state_machine/player/character_body_2d.gd" id="1_gvihb"]
-[ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://icon.svg" id="2_b24tc"]
-[ext_resource type="PackedScene" uid="uid://jtas3c31phrn" path="res://patterns/generic_state_machine/state/state_machine.tscn" id="3_ilcsa"]
-[ext_resource type="Script" uid="uid://sn7wjvojfoct" path="res://patterns/generic_state_machine/player/states/idle.gd" id="4_ocwsp"]
-[ext_resource type="Script" uid="uid://by0rsm3ljvhuj" path="res://patterns/generic_state_machine/player/states/move.gd" id="5_pohid"]
-[ext_resource type="Script" uid="uid://rtnenw7qm5u8" path="res://patterns/generic_state_machine/player/states/jump.gd" id="6_sv8o3"]
-[ext_resource type="Script" uid="uid://bti2pfgv3r8lb" path="res://patterns/generic_state_machine/player/states/fall.gd" id="7_4rrrn"]
+[ext_resource type="Script" uid="uid://dcbk531crt4v1" path="res://addons/godot_tools/patterns/generic_state_machine/player/character_body_2d.gd" id="1_gvihb"]
+[ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://addons/godot_tools/icon.svg" id="2_b24tc"]
+[ext_resource type="PackedScene" uid="uid://jtas3c31phrn" path="res://addons/godot_tools/patterns/generic_state_machine/state/state_machine.tscn" id="3_ilcsa"]
+[ext_resource type="Script" uid="uid://sn7wjvojfoct" path="res://addons/godot_tools/patterns/generic_state_machine/player/states/idle.gd" id="4_ocwsp"]
+[ext_resource type="Script" uid="uid://by0rsm3ljvhuj" path="res://addons/godot_tools/patterns/generic_state_machine/player/states/move.gd" id="5_pohid"]
+[ext_resource type="Script" uid="uid://rtnenw7qm5u8" path="res://addons/godot_tools/patterns/generic_state_machine/player/states/jump.gd" id="6_sv8o3"]
+[ext_resource type="Script" uid="uid://bti2pfgv3r8lb" path="res://addons/godot_tools/patterns/generic_state_machine/player/states/fall.gd" id="7_4rrrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nejjw"]
 size = Vector2(124, 126)

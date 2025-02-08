@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnri4fphk1k5i"]
 
-[ext_resource type="Script" uid="uid://d3e12wsbe4yav" path="res://movement/curve_accel_test/move_with_curve.gd" id="1_hho41"]
-[ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://icon.svg" id="2_r043h"]
+[ext_resource type="Script" uid="uid://d3e12wsbe4yav" path="res://addons/godot_tools/movement/curve_accel_test/move_with_curve.gd" id="1_hho41"]
+[ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://addons/godot_tools/icon.svg" id="2_r043h"]
 
 [sub_resource type="Curve" id="Curve_hho41"]
 _data = [Vector2(0.00854702, 0.0224719), 0.0, 0.0, 0, 0, Vector2(0.495727, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

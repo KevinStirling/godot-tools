@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh03lt5cv3kmt"]
 
-[ext_resource type="PackedScene" uid="uid://bebloh2vhdisj" path="res://patterns/generic_state_machine/player/player.tscn" id="1_64ixd"]
-[ext_resource type="Script" path="res://patterns/generic_state_machine/player/states/jetpack.gd" id="2_ogp6j"]
+[ext_resource type="PackedScene" uid="uid://bebloh2vhdisj" path="res://addons/godot_tools/patterns/generic_state_machine/player/player.tscn" id="1_64ixd"]
+[ext_resource type="Script" uid="uid://bq3d4rtys8ftp" path="res://addons/godot_tools/patterns/generic_state_machine/player/states/jetpack.gd" id="2_ogp6j"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_patvf"]
 
