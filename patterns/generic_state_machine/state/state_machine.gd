@@ -4,19 +4,18 @@ extends Node
 
 @export var starting_state: State
 @export var current_state: State
-# @export var debug_offset: Vector2:
-# 	get: 
-# 		return debug_offset
-# 	set(value):
-# 		debug_offset = value
-# 		%DebugPanel.position = debug_offset
+
+var parent: Player
+var player_velo: Vector2 = Vector2.ZERO
+var world_pos: Vector2 = Vector2.ZERO
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
-func init(parent: Player) -> void:
+func init(p: Player) -> void:
+	parent = p
 	for child in get_children():
 		if child is State:
-			child.parent = parent
+			child.parent = p
 
 	change_state(starting_state)
 
@@ -31,6 +30,8 @@ func process_physics(delta: float) -> void:
 	var new_state = current_state.process_physics(delta)
 	if new_state:
 		change_state(new_state)
+	player_velo = parent.velocity
+	world_pos = parent.position
 	
 func process_input(event: InputEvent) -> void:
 	var new_state = current_state.process_input(event)

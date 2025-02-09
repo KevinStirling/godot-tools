@@ -12,12 +12,12 @@ func enter() -> void:
 	momentum = parent.velocity.x
 
 func process_physics(delta: float) -> State:
-	parent.velocity.y += gravity * delta
+	parent.velocity.y += parent.gravity * delta
 	if Input.is_action_pressed("jetpack"):
 		return jetpack_state
 
 	var input_dir = Input.get_axis('left', 'right')
-	var movement = input_dir * move_speed
+	var movement = input_dir * parent.move_speed
 
 	# If movement input is opposite of current momentum, reduce horizontal velocity
 	if (momentum * input_dir) < 0 or !momentum:

@@ -32,4 +32,7 @@ func _process(_delta: float) -> void:
 			var line_item: HSplitContainer = control_prop_list.get_node(node_path_dict.get(w))
 			for child in line_item.get_children():
 				if child.name == "value":
-					child.text = watch_node.get(w).name
+					if watch_node.get(w) is State:
+						child.text = watch_node.get(w).name
+					else:
+						child.text = str(watch_node.get(w))

@@ -30,13 +30,13 @@ func process_physics(delta: float) -> State:
 	if Input.is_action_pressed("ui_accept") and jump_timer < jump_timer_max:
 		parent.velocity.y += parent.JUMP_VELOCITY
 	else:
-		parent.velocity.y += gravity * delta
+		parent.velocity.y += parent.gravity * delta
 	
 	if parent.velocity.y > 0:
 		return fall_state
 	
 	var input_dir = Input.get_axis('left', 'right') 
-	var movement = input_dir * move_speed
+	var movement = input_dir * parent.move_speed
 	
 	if ( parent.velocity.x * input_dir < 0 ):
 		parent.velocity.x += air_accel * input_dir * delta

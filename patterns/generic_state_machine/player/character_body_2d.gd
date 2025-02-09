@@ -4,6 +4,8 @@ class_name Player
 
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
+@export var gravity: int = 8800
+@export var move_speed: float = 600.0
 
 @onready var state_machine = %StateMachine
 
