@@ -9,7 +9,7 @@ var parent: Player
 
 func enter() -> void:
 	# parent.animations.play(animation_name)
-	print( "current state = ", parent.state_machine.current_state )
+	pass
 
 func exit() -> void:
 	pass

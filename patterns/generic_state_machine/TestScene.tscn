@@ -17,9 +17,6 @@ JUMP_VELOCITY = -50.0
 [node name="StateMachine" parent="CharacterBody2D" index="2" node_paths=PackedStringArray("current_state")]
 current_state = NodePath("Idle")
 
-[node name="Move" parent="CharacterBody2D/StateMachine" index="2"]
-move_speed = 800.0
-
 [node name="Jump" parent="CharacterBody2D/StateMachine" index="3" node_paths=PackedStringArray("jetpack_state")]
 jetpack_state = NodePath("../Jetpack")
 jump_force = 750.0
