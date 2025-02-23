@@ -8,8 +8,8 @@ extends Node
 var parent: Player
 
 func enter() -> void:
-	# parent.animations.play(animation_name)
-	pass
+	if animation_name:
+		parent.player_sprites.animations.play(animation_name)
 
 func exit() -> void:
 	pass

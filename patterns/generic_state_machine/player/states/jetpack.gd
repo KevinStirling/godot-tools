@@ -38,6 +38,8 @@ func process_physics(delta: float) -> State:
 	
 	var input_dir = Input.get_axis('left', 'right') 
 	var movement = input_dir * air_accel
+	if movement != 0:
+		parent.player_sprites.flip_h = movement < 0
 	
 	if ( parent.velocity.x * input_dir < 0 ):
 		parent.velocity.x += air_accel * input_dir * delta

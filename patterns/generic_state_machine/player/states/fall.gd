@@ -18,6 +18,8 @@ func process_physics(delta: float) -> State:
 
 	var input_dir = Input.get_axis('left', 'right')
 	var movement = input_dir * parent.move_speed
+	if movement != 0:
+		parent.player_sprites.flip_h = movement < 0
 
 	# If movement input is opposite of current momentum, reduce horizontal velocity
 	if (momentum * input_dir) < 0 or !momentum:
