@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ybfoeapvv5h4"]
+
+[ext_resource type="Script" uid="uid://d1slecw84utdh" path="res://addons/godot-tools/components/damage/damage_reciever.gd" id="1_rbtuy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbtuy"]
+
+[node name="DamageReciever" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_rbtuy")
+hurt_box_shape = SubResource("RectangleShape2D_rbtuy")
+
+[node name="HurtBoxShape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_rbtuy")

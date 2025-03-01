@@ -18,5 +18,3 @@ void vertex() {
 void fragment() {
 	COLOR = quantizeScreen(SCREEN_TEXTURE, SCREEN_UV, g_vertex);
 }
-
-
