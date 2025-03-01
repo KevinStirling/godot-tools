@@ -2,9 +2,8 @@
 extends Area2D
 class_name DamageReciever
 
-signal damage_taken
+signal damage_taken(amount)
 
-@export var health : int = 20
 @export var hurt_box_shape : Shape2D :
 	get: 
 		return hurt_box_shape
@@ -12,14 +11,18 @@ signal damage_taken
 		if Engine.is_editor_hint():
 			hurt_box_shape = value
 			%HurtBoxShape.shape = hurt_box_shape
+			update_configuration_warnings()
 
 func take_damage(body : Node2D) -> void :
 	if !Engine.is_editor_hint():
 		if body is DamageDealer:
-			health -= body.damage
 			print("took " + str(body.damage) + " damage")
-			print("health = " + str(health))
-			damage_taken.emit()
+			damage_taken.emit(body.damage)
 
 func _ready() -> void:
 	connect("area_entered", take_damage)
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if !hurt_box_shape:
+		return ["No HurtBoxShape has been set. Will not recieve damage with one."]
+	return []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bebloh2vhdisj"]
+[gd_scene load_steps=11 format=3 uid="uid://bebloh2vhdisj"]
 
 [ext_resource type="Script" uid="uid://dcbk531crt4v1" path="res://addons/godot-tools/patterns/generic_state_machine/player/character_body_2d.gd" id="1_gvihb"]
 [ext_resource type="PackedScene" uid="uid://d3pptoti5f7j6" path="res://scenes/actors/PlayerSprites.tscn" id="2_rbxc3"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://rtnenw7qm5u8" path="res://addons/godot-tools/patterns/generic_state_machine/player/states/jump.gd" id="6_sv8o3"]
 [ext_resource type="Script" uid="uid://bti2pfgv3r8lb" path="res://addons/godot-tools/patterns/generic_state_machine/player/states/fall.gd" id="7_4rrrn"]
 [ext_resource type="PackedScene" uid="uid://ybfoeapvv5h4" path="res://addons/godot-tools/components/damage/DamageReciever.tscn" id="8_q6m8a"]
+[ext_resource type="PackedScene" uid="uid://crgx27pbbcw25" path="res://addons/godot-tools/components/health/HealthComponent.tscn" id="9_81fle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nejjw"]
 size = Vector2(12, 19)
@@ -49,3 +50,6 @@ idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
 
 [node name="DamageReciever" parent="." instance=ExtResource("8_q6m8a")]
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("damage_reciever") instance=ExtResource("9_81fle")]
+damage_reciever = NodePath("../DamageReciever")

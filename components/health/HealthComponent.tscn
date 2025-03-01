@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://crgx27pbbcw25"]
+
+[ext_resource type="Script" uid="uid://baa8tqa2ei16s" path="res://addons/godot-tools/components/health/health_component.gd" id="1_aodna"]
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_aodna")
