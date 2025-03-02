@@ -2,6 +2,13 @@
 extends Area2D
 class_name DamageReciever
 
+# -----------------------------------------------------------------------------
+# DamageReciever
+# Component that manages the hurt box for a parent, independantly of parent 
+# (parent is unaware). 
+# Emits signal of damage amount when damage is taken
+# -----------------------------------------------------------------------------
+
 signal damage_taken(amount)
 
 @export var hurt_box_shape : Shape2D :
