@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://10h7jwux2a0o"]
+
+[ext_resource type="Script" uid="uid://dw36mlf6vwdag" path="res://addons/GodotTools/components/grid_inventory/InventoryItem.gd" id="1_2mvvt"]
+[ext_resource type="Script" uid="uid://drkw2pgrjdw46" path="res://addons/GodotTools/components/grid_inventory/Inventory.gd" id="1_7hpp3"]
+[ext_resource type="Script" uid="uid://cqum345bgovxi" path="res://addons/GodotTools/components/grid_inventory/Item.gd" id="2_rw75v"]
+[ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://addons/GodotTools/icon.svg" id="3_ymtkw"]
+
+[node name="Node2D" type="Node2D" unique_id=1361759740]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1361567922]
+offset_right = 256.0
+offset_bottom = 640.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryView" type="SubViewport" parent="SubViewportContainer" unique_id=869340597]
+handle_input_locally = false
+size = Vector2i(640, 640)
+render_target_update_mode = 4
+
+[node name="Inventory" type="Node2D" parent="SubViewportContainer/InventoryView" unique_id=313668653]
+unique_name_in_owner = true
+visibility_layer = 2
+script = ExtResource("1_7hpp3")
+
+[node name="InventoryItem" type="Node2D" parent="SubViewportContainer/InventoryView" unique_id=771506966]
+visibility_layer = 2
+script = ExtResource("1_2mvvt")
+
+[node name="Preview" type="Sprite2D" parent="SubViewportContainer/InventoryView/InventoryItem" unique_id=1813328713]
+unique_name_in_owner = true
+modulate = Color(0.72041476, 0.72041476, 0.72041476, 0.41568628)
+texture = ExtResource("3_ymtkw")
+centered = false
+
+[node name="Item" type="Node2D" parent="SubViewportContainer" unique_id=1797082808]
+script = ExtResource("2_rw75v")
+item_sprite = ExtResource("3_ymtkw")
+
+[node name="Handle" type="Button" parent="SubViewportContainer/Item" unique_id=1685786196]
+offset_right = 128.0
+offset_bottom = 128.0
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite" type="Sprite2D" parent="SubViewportContainer/Item" unique_id=2037482856]
+unique_name_in_owner = true
+texture = ExtResource("3_ymtkw")
+centered = false
+
+[connection signal="button_down" from="SubViewportContainer/Item/Handle" to="SubViewportContainer/Item" method="_on_handle_button_down"]
+[connection signal="button_up" from="SubViewportContainer/Item/Handle" to="SubViewportContainer/Item" method="_on_handle_button_up"]
