@@ -27,4 +27,5 @@ func _on_handle_button_down() -> void:
 
 func _on_handle_button_up() -> void:
 	dragging = false
-	InventoryGlobals.drag_stopped.emit(global_position)
+	var drop_loc = global_position + (item_sprite_size / 2)
+	InventoryGlobals.drag_stopped.emit(drop_loc)

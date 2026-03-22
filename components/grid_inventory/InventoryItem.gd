@@ -20,9 +20,11 @@ func show_preview(item: Node, texture: Texture2D) -> void:
 	parent_item = item
 	%Preview.texture = texture
 	dragging = true
+	visible = true
 
 func stop_preview(position: Vector2) -> void:
 	if %Inventory.in_bounds(position):
 		parent_item.global_position = global_position
 	dragging = false
 	parent_item = null
+	visible = false
