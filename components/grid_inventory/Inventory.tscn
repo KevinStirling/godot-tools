@@ -2,8 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dw36mlf6vwdag" path="res://addons/GodotTools/components/grid_inventory/InventoryItem.gd" id="1_2mvvt"]
 [ext_resource type="Script" uid="uid://drkw2pgrjdw46" path="res://addons/GodotTools/components/grid_inventory/Inventory.gd" id="1_7hpp3"]
-[ext_resource type="Script" uid="uid://cqum345bgovxi" path="res://addons/GodotTools/components/grid_inventory/Item.gd" id="2_rw75v"]
 [ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://addons/GodotTools/icon.svg" id="3_ymtkw"]
+[ext_resource type="PackedScene" uid="uid://bb6havs81m3gw" path="res://addons/GodotTools/components/grid_inventory/InventoryItem.tscn" id="4_rw75v"]
+[ext_resource type="Texture2D" uid="uid://dvbles4h2h8t2" path="res://addons/GodotTools/components/grid_inventory/1x2_128x256.png" id="5_ymtkw"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mb8dt"]
+points = PackedVector2Array(0, 0, 0, 128, 128, 128, 128, 0)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ymtkw"]
+points = PackedVector2Array(0, 0, 0, 256, 128, 256, 128, 0)
 
 [node name="Node2D" type="Node2D" unique_id=1361759740]
 
@@ -33,20 +40,11 @@ modulate = Color(0.72041476, 0.72041476, 0.72041476, 0.41568628)
 texture = ExtResource("3_ymtkw")
 centered = false
 
-[node name="Item" type="Node2D" parent="SubViewportContainer" unique_id=1797082808]
-script = ExtResource("2_rw75v")
+[node name="Item" parent="." unique_id=1826611737 instance=ExtResource("4_rw75v")]
 item_sprite = ExtResource("3_ymtkw")
+item_sprite_size = Vector2(128, 128)
+collision_shape = SubResource("ConvexPolygonShape2D_mb8dt")
 
-[node name="Handle" type="Button" parent="SubViewportContainer/Item" unique_id=1685786196]
-offset_right = 128.0
-offset_bottom = 128.0
-flat = true
-metadata/_edit_use_anchors_ = true
-
-[node name="Sprite" type="Sprite2D" parent="SubViewportContainer/Item" unique_id=2037482856]
-unique_name_in_owner = true
-texture = ExtResource("3_ymtkw")
-centered = false
-
-[connection signal="button_down" from="SubViewportContainer/Item/Handle" to="SubViewportContainer/Item" method="_on_handle_button_down"]
-[connection signal="button_up" from="SubViewportContainer/Item/Handle" to="SubViewportContainer/Item" method="_on_handle_button_up"]
+[node name="Item2" parent="." unique_id=1160641396 instance=ExtResource("4_rw75v")]
+item_sprite = ExtResource("5_ymtkw")
+collision_shape = SubResource("ConvexPolygonShape2D_ymtkw")
