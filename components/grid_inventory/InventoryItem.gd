@@ -9,12 +9,13 @@ var parent_item: Item
 func _ready() -> void:
 	InventoryGlobals.drag_started.connect(show_preview)
 	InventoryGlobals.drag_stopped.connect(stop_preview)
-	position = Vector2(snapped(position.x, snap), snapped(position.y, snap))
+	InventoryGlobals.rotated.connect(rotate_preview)
 
 func _process(delta):
 	if dragging:
-		var new_pos = parent_item.global_position
-		global_position = Vector2(snapped(new_pos.x, snap), snapped(new_pos.y, snap))
+		var pos = parent_item.get_grid_origin()
+		var snapped_origin = Vector2(snapped(pos.x, snap), snapped(pos.y, snap))
+		global_position = snapped_origin + (parent_item.get_item_sprite_size() / 2)
 		if !in_grid_bounds() || parent_item.colliding:
 			visible = false
 		else:
@@ -23,6 +24,7 @@ func _process(delta):
 func show_preview(item: Node, texture: Texture2D) -> void:
 	parent_item = item
 	%Preview.texture = parent_item.item_sprite
+	%Preview.rotation_degrees = parent_item.get_item_rotation()
 	dragging = true
 	visible = true
 
@@ -36,7 +38,10 @@ func stop_preview(position: Vector2) -> void:
 
 ## helper for inventory's grid bound check on current item being held
 func in_grid_bounds() -> bool:
-	if %Inventory.in_bounds(global_position, parent_item.item_sprite_size):
+	if %Inventory.in_bounds(global_position - (parent_item.get_item_sprite_size() / 2), parent_item.get_item_sprite_size()):
 		return true
 	else:
 		return false
+
+func rotate_preview(rot_degrees: float) -> void:
+	%Preview.rotation_degrees = rot_degrees

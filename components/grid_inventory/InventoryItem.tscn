@@ -4,25 +4,24 @@
 
 [node name="Item" type="Node2D" unique_id=1826611737 node_paths=PackedStringArray("handle")]
 script = ExtResource("1_1a50x")
-handle = NodePath("Handle")
+handle = NodePath("Sprite/Handle")
 item_sprite_size = Vector2(128, 256)
 
-[node name="Handle" type="Button" parent="." unique_id=1058908]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=940257849]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="Sprite" unique_id=713724947]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D" unique_id=759352271]
+
+[node name="Handle" type="Button" parent="Sprite" unique_id=1058908]
 unique_name_in_owner = true
 offset_right = 128.0
 offset_bottom = 256.0
 flat = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=940257849]
-unique_name_in_owner = true
-centered = false
-
-[node name="Area2D" type="Area2D" parent="." unique_id=713724947]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=759352271]
-
-[connection signal="button_down" from="Handle" to="." method="_on_handle_button_down"]
-[connection signal="button_up" from="Handle" to="." method="_on_handle_button_up"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_entered" from="Sprite/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Sprite/Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="button_down" from="Sprite/Handle" to="." method="_on_handle_button_down"]
+[connection signal="button_up" from="Sprite/Handle" to="." method="_on_handle_button_up"]

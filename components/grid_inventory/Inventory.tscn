@@ -37,14 +37,21 @@ script = ExtResource("1_2mvvt")
 [node name="Preview" type="Sprite2D" parent="SubViewportContainer/InventoryView/InventoryItem" unique_id=1813328713]
 unique_name_in_owner = true
 modulate = Color(0.72041476, 0.72041476, 0.72041476, 0.41568628)
-texture = ExtResource("3_ymtkw")
-centered = false
 
 [node name="Item" parent="." unique_id=1826611737 instance=ExtResource("4_rw75v")]
 item_sprite = ExtResource("3_ymtkw")
 item_sprite_size = Vector2(128, 128)
 collision_shape = SubResource("ConvexPolygonShape2D_mb8dt")
 
+[node name="Item3" parent="." unique_id=772628447 instance=ExtResource("4_rw75v")]
+item_sprite = ExtResource("3_ymtkw")
+item_sprite_size = Vector2(128, 128)
+collision_shape = SubResource("ConvexPolygonShape2D_mb8dt")
+
 [node name="Item2" parent="." unique_id=1160641396 instance=ExtResource("4_rw75v")]
+item_sprite = ExtResource("5_ymtkw")
+collision_shape = SubResource("ConvexPolygonShape2D_ymtkw")
+
+[node name="Item4" parent="." unique_id=435325088 instance=ExtResource("4_rw75v")]
 item_sprite = ExtResource("5_ymtkw")
 collision_shape = SubResource("ConvexPolygonShape2D_ymtkw")
