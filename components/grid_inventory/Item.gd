@@ -6,8 +6,12 @@ extends Node2D
 
 var dragging: bool = false
 var offset: Vector2 = Vector2.ZERO
-var colliding: bool = false
+var _overlapping_count: int = 0
+var colliding: bool:
+	get:
+		return _overlapping_count > 0
 var rotated: bool
+var last_grid_coords: Array
 
 @export var item_sprite: Texture2D:
 	set(value):
@@ -15,20 +19,39 @@ var rotated: bool
 		if %Sprite:
 			%Sprite.texture = value
 @export var item_sprite_size: Vector2 = Vector2(128,128)
+## Shrinks collision shape inward by this many pixels per side, making it easier to place items in tight gaps
+@export var collision_margin: float = 32.0
+@export var collision_shape: Shape2D:
+	set(value):
+		collision_shape = value
+		if !is_node_ready():
+			await ready
+		## set the collision shape to match the item, shrunk by the margin
+		var col_node = get_node("Sprite/Area2D/CollisionShape2D")
+		col_node.position = -item_sprite_size / 2
+		var shrunk = value.duplicate()
+		if shrunk is RectangleShape2D:
+			shrunk.size -= Vector2(collision_margin * 2, collision_margin * 2)
+		elif shrunk is ConvexPolygonShape2D:
+			var points = shrunk.points
+			var centroid = Vector2.ZERO
+			for p in points:
+				centroid += p
+			centroid /= points.size()
+			for i in points.size():
+				var dir = (points[i] - centroid).normalized()
+				points[i] -= dir * collision_margin
+			shrunk.points = points
+		col_node.shape = shrunk
+
+func _ready() -> void:
+	handle.size = item_sprite_size
+	handle.position = -item_sprite_size * .5
 
 func get_item_sprite_size() -> Vector2:
 	if rotated:
 		return Vector2(item_sprite_size.y, item_sprite_size.x)
 	return item_sprite_size
-@export var collision_shape: Shape2D:
-	set(value):
-		collision_shape = value
-		get_node("Sprite/Area2D/CollisionShape2D").position -= item_sprite_size / 2
-		get_node("Sprite/Area2D/CollisionShape2D").shape = value
-
-func _ready() -> void:
-	handle.size = item_sprite_size
-	handle.position -= item_sprite_size / 2
 
 func get_grid_origin() -> Vector2:
 	return global_position - ( get_item_sprite_size() / 2 )
@@ -38,7 +61,6 @@ func _process(delta):
 		position = get_global_mouse_position() - offset
 
 func rotate_90() -> void:
-	print("[%s] rotate_90 called, rotated before: %s" % [name, rotated])
 	var tween = get_tree().create_tween()
 	if rotated:
 		tween.tween_property(%Sprite, "rotation_degrees", 0.0, .1)
@@ -48,12 +70,14 @@ func rotate_90() -> void:
 		InventoryGlobals.rotated.emit(-90.0)
 	rotated = !rotated
 	await tween.finished
-	print("[%s] rotate_90 done, rotated after: %s" % [name, rotated])
 	tween.kill()
 
 func get_item_rotation() -> float:
-	print("[%s] get_item_rotation, rotated: %s" % [name, rotated])
 	return -90.0 if rotated else 0.0
+
+## helper for getting the top left corner of sprite, as origin is centered
+func get_origin_offset() -> Vector2:
+	return global_position - (get_item_sprite_size() / 2)
 
 func _input(event: InputEvent) -> void:
 	if dragging:
@@ -74,7 +98,7 @@ func _on_handle_button_up() -> void:
 	InventoryGlobals.drag_stopped.emit(drop_loc)
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
-	colliding = false
+	_overlapping_count -= 1
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	colliding = true
+	_overlapping_count += 1

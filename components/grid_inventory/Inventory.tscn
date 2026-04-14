@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dw36mlf6vwdag" path="res://addons/GodotTools/components/grid_inventory/InventoryItem.gd" id="1_2mvvt"]
 [ext_resource type="Script" uid="uid://drkw2pgrjdw46" path="res://addons/GodotTools/components/grid_inventory/Inventory.gd" id="1_7hpp3"]
 [ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://addons/GodotTools/icon.svg" id="3_ymtkw"]
-[ext_resource type="PackedScene" uid="uid://bb6havs81m3gw" path="res://addons/GodotTools/components/grid_inventory/InventoryItem.tscn" id="4_rw75v"]
+[ext_resource type="PackedScene" uid="uid://bb6havs81m3gw" path="res://addons/GodotTools/components/grid_inventory/Item.tscn" id="4_rw75v"]
 [ext_resource type="Texture2D" uid="uid://dvbles4h2h8t2" path="res://addons/GodotTools/components/grid_inventory/1x2_128x256.png" id="5_ymtkw"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mb8dt"]
@@ -15,8 +15,10 @@ points = PackedVector2Array(0, 0, 0, 256, 128, 256, 128, 0)
 [node name="Node2D" type="Node2D" unique_id=1361759740]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1361567922]
-offset_right = 256.0
-offset_bottom = 640.0
+offset_left = 257.0
+offset_top = 179.0
+offset_right = 897.0
+offset_bottom = 819.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -38,20 +40,20 @@ script = ExtResource("1_2mvvt")
 unique_name_in_owner = true
 modulate = Color(0.72041476, 0.72041476, 0.72041476, 0.41568628)
 
-[node name="Item" parent="." unique_id=1826611737 instance=ExtResource("4_rw75v")]
-item_sprite = ExtResource("3_ymtkw")
-item_sprite_size = Vector2(128, 128)
-collision_shape = SubResource("ConvexPolygonShape2D_mb8dt")
-
 [node name="Item3" parent="." unique_id=772628447 instance=ExtResource("4_rw75v")]
+position = Vector2(919, 455)
 item_sprite = ExtResource("3_ymtkw")
 item_sprite_size = Vector2(128, 128)
+collision_margin = null
 collision_shape = SubResource("ConvexPolygonShape2D_mb8dt")
 
 [node name="Item2" parent="." unique_id=1160641396 instance=ExtResource("4_rw75v")]
+position = Vector2(948, 159)
 item_sprite = ExtResource("5_ymtkw")
+collision_margin = null
 collision_shape = SubResource("ConvexPolygonShape2D_ymtkw")
 
 [node name="Item4" parent="." unique_id=435325088 instance=ExtResource("4_rw75v")]
 item_sprite = ExtResource("5_ymtkw")
+collision_margin = null
 collision_shape = SubResource("ConvexPolygonShape2D_ymtkw")

@@ -21,6 +21,7 @@ func _process(delta):
 		else:
 			visible = true
 
+# TODO change these function names, they do more now. or perhaps some of it belongs elsewhere
 func show_preview(item: Node, texture: Texture2D) -> void:
 	parent_item = item
 	%Preview.texture = parent_item.item_sprite
@@ -38,7 +39,7 @@ func stop_preview(position: Vector2) -> void:
 
 ## helper for inventory's grid bound check on current item being held
 func in_grid_bounds() -> bool:
-	if %Inventory.in_bounds(global_position - (parent_item.get_item_sprite_size() / 2), parent_item.get_item_sprite_size()):
+	if %Inventory.in_bounds(parent_item.get_origin_offset(), parent_item.get_item_sprite_size()):
 		return true
 	else:
 		return false

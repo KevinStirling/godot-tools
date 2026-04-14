@@ -4,6 +4,14 @@ extends Node2D
 @export var grid_size: Vector2 = Vector2(5,5)
 @export var cell_size: Vector2 = Vector2(128,128)
 
+var inventory_list: Array
+
+func add_to_inventory(item) -> void:
+	inventory_list.append(item)
+
+func remove_from_inventory(item) -> void:
+	inventory_list.erase(item)
+
 func _draw() -> void:
 	# draw the grid based on grid_size & cell_size
 	for row in range(grid_size.y + 1):
@@ -16,8 +24,9 @@ func in_bounds(position: Vector2, area: Vector2) -> bool:
 	var origin = global_position
 	var max_bounds = grid_size * cell_size
 	var max_pos = position + area
+	var margin = cell_size / 2
 
-	if is_less_vec(position, origin) || is_greater_vec(max_pos, max_bounds):
+	if is_less_vec(position, origin - margin) || is_greater_vec(max_pos, max_bounds + margin):
 		return false
 	return true
 
@@ -32,3 +41,7 @@ func is_less_vec(a: Vector2, b: Vector2) -> bool:
 	if a.x < b.x || a.y < b.y:
 		return true
 	return false
+
+## get grid coord from global position
+func global_to_grid(position: Vector2) -> Vector2i:
+	return Vector2i(position / cell_size)
