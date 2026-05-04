@@ -22,7 +22,7 @@ func _draw() -> void:
 ## checks if a position is in bounds of the grid, and accounts for the area of the item at that position
 func in_bounds(position: Vector2, area: Vector2) -> bool:
 	var origin = global_position
-	var max_bounds = grid_size * cell_size
+	var max_bounds = origin + grid_size * cell_size
 	var max_pos = position + area
 	var margin = cell_size / 2
 
@@ -44,4 +44,4 @@ func is_less_vec(a: Vector2, b: Vector2) -> bool:
 
 ## get grid coord from global position
 func global_to_grid(position: Vector2) -> Vector2i:
-	return Vector2i(position / cell_size)
+	return Vector2i((position - global_position) / cell_size)
