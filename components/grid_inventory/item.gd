@@ -19,40 +19,40 @@ var last_grid_coords: Array
 		if %Sprite:
 			%Sprite.texture = value
 @export var item_sprite_size: Vector2 = Vector2(128,128)
-@export var collision_shape: Shape2D:
-	set(value):
-		collision_shape = value
-		var col_node = %CollisionShape2D
-		if value:
-			if value is ConcavePolygonShape2D:
-				col_node.position = -item_sprite_size / 2
-			col_node.position = Vector2.ZERO
-			col_node.shape = value
-		else:
-			col_node.shape = null
-
-# more complex version that accounts for non-rectangle shapes, and auto shinks by collision_margin
-# @export var collision_margin: float = 32.0
 # @export var collision_shape: Shape2D:
 # 	set(value):
 # 		collision_shape = value
-# 		if !is_node_ready():
-# 			await ready
-# 		## set the collision shape to match the item, shrunk by the margin
-# 		var col_node = get_node("Sprite/Area2D/CollisionShape2D")
-# 		col_node.position = -item_sprite_size / 2
-# 		var shrunk = value.duplicate()
-# 		if shrunk is ConvexPolygonShape2D:
-# 			var points = shrunk.points
-# 			var centroid = Vector2.ZERO
-# 			for p in points:
-# 				centroid += p
-# 			centroid /= points.size()
-# 			for i in points.size():
-# 				var dir = (points[i] - centroid).normalized()
-# 				points[i] -= dir * collision_margin
-# 			shrunk.points = points
-# 		col_node.shape = shrunk
+# 		var col_node = %CollisionShape2D
+# 		if value:
+# 			if value is ConcavePolygonShape2D:
+# 				col_node.position = -item_sprite_size / 2
+# 			col_node.position = Vector2.ZERO
+# 			col_node.shape = value
+# 		else:
+# 			col_node.shape = null
+
+# more complex version that accounts for non-rectangle shapes, and auto shinks by collision_margin
+@export var collision_margin: float = 32.0
+@export var collision_shape: Shape2D:
+	set(value):
+		collision_shape = value
+		if !is_node_ready():
+			await ready
+		## set the collision shape to match the item, shrunk by the margin
+		var col_node = get_node("Sprite/Area2D/CollisionShape2D")
+		col_node.position = -item_sprite_size / 2
+		var shrunk = value.duplicate()
+		if shrunk is ConvexPolygonShape2D:
+			var points = shrunk.points
+			var centroid = Vector2.ZERO
+			for p in points:
+				centroid += p
+			centroid /= points.size()
+			for i in points.size():
+				var dir = (points[i] - centroid).normalized()
+				points[i] -= dir * collision_margin
+			shrunk.points = points
+		col_node.shape = shrunk
 
 func _ready() -> void:
 	handle.size = item_sprite_size
