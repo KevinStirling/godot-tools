@@ -21,28 +21,10 @@ func _draw() -> void:
 
 ## Returns true if a position is in bounds of the grid, and accounts for the area of the item at that position
 func in_bounds(position: Vector2, area: Vector2) -> bool:
-	var origin = global_position
-	var max_bounds = origin + grid_size * cell_size
-	var max_pos = position + area
 	var margin = cell_size / 2
-
-	if is_less_vec(position, origin - margin) || is_greater_vec(max_pos, max_bounds + margin):
-		return false
-	return true
-
-## Checks if a.x or a.y is greater than b.x or b.y.
-## Helper for checking if coordinates are within grid bounds
-func is_greater_vec(a: Vector2, b: Vector2) -> bool:
-	if a.x > b.x || a.y > b.y:
-		return true
-	return false
-
-## Checks if a.x or a.y is less than b.x or b.y.
-## Helper for checking if coordinates are within grid bounds
-func is_less_vec(a: Vector2, b: Vector2) -> bool:
-	if a.x < b.x || a.y < b.y:
-		return true
-	return false
+	var grid_rect = Rect2(global_position - margin, grid_size * cell_size + margin * 2)
+	var item_rect = Rect2(position, area)
+	return grid_rect.encloses(item_rect)
 
 ## Get grid coord from global position
 func global_to_grid(position: Vector2) -> Vector2i:
