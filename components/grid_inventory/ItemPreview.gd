@@ -1,4 +1,4 @@
-class_name InventoryItem
+class_name ItemPreview 
 extends Node2D
 
 @export var snap: int = 128
@@ -11,7 +11,7 @@ var container_position: Vector2
 
 func _ready() -> void:
 	InventoryGlobals.drag_started.connect(show_preview)
-	InventoryGlobals.drag_stopped.connect(stop_preview)
+	InventoryGlobals.drag_stopped.connect(hide_preview)
 	InventoryGlobals.rotated.connect(rotate_preview)
 	container_position = get_viewport().get_parent().global_position
 
@@ -35,7 +35,6 @@ func _process(delta):
 		else:
 			visible = true
 
-# TODO change these function names, they do more now. or perhaps some of it belongs elsewhere
 func show_preview(item: Node, texture: Texture2D) -> void:
 	parent_item = item
 	%Preview.texture = parent_item.item_sprite
@@ -43,7 +42,7 @@ func show_preview(item: Node, texture: Texture2D) -> void:
 	dragging = true
 	visible = true
 
-func stop_preview(position: Vector2) -> void:
+func hide_preview(position: Vector2) -> void:
 	if in_grid_bounds():
 		if !parent_item.colliding:
 			parent_item.global_position = viewport_to_scene(global_position)

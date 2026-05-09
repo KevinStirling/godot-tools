@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://10h7jwux2a0o"]
 
-[ext_resource type="Script" uid="uid://dw36mlf6vwdag" path="res://addons/GodotTools/components/grid_inventory/InventoryItem.gd" id="1_2mvvt"]
+[ext_resource type="Script" uid="uid://dw36mlf6vwdag" path="res://addons/GodotTools/components/grid_inventory/ItemPreview.gd" id="1_2mvvt"]
 [ext_resource type="Script" uid="uid://drkw2pgrjdw46" path="res://addons/GodotTools/components/grid_inventory/Inventory.gd" id="1_7hpp3"]
 [ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://addons/GodotTools/icon.svg" id="3_ymtkw"]
 [ext_resource type="PackedScene" uid="uid://bb6havs81m3gw" path="res://addons/GodotTools/components/grid_inventory/Item.tscn" id="4_rw75v"]
@@ -38,11 +38,11 @@ unique_name_in_owner = true
 visibility_layer = 2
 script = ExtResource("1_7hpp3")
 
-[node name="InventoryItem" type="Node2D" parent="SubViewportContainer/InventoryView" unique_id=771506966]
+[node name="ItemPreview" type="Node2D" parent="SubViewportContainer/InventoryView" unique_id=771506966]
 visibility_layer = 2
 script = ExtResource("1_2mvvt")
 
-[node name="Preview" type="Sprite2D" parent="SubViewportContainer/InventoryView/InventoryItem" unique_id=1813328713]
+[node name="Preview" type="Sprite2D" parent="SubViewportContainer/InventoryView/ItemPreview" unique_id=1813328713]
 unique_name_in_owner = true
 modulate = Color(0.72041476, 0.72041476, 0.72041476, 0.41568628)
 

@@ -19,7 +19,7 @@ func _draw() -> void:
 	for col in range(grid_size.x + 1):
 		draw_line(Vector2(cell_size.x * col, 0), Vector2(cell_size.x * col, cell_size.y * grid_size.y), Color.ALICE_BLUE, 2.0, false)
 
-## checks if a position is in bounds of the grid, and accounts for the area of the item at that position
+## Returns true if a position is in bounds of the grid, and accounts for the area of the item at that position
 func in_bounds(position: Vector2, area: Vector2) -> bool:
 	var origin = global_position
 	var max_bounds = origin + grid_size * cell_size
@@ -30,18 +30,20 @@ func in_bounds(position: Vector2, area: Vector2) -> bool:
 		return false
 	return true
 
-## checks if a.x or a.y is greater than b.x or b.y
+## Checks if a.x or a.y is greater than b.x or b.y.
+## Helper for checking if coordinates are within grid bounds
 func is_greater_vec(a: Vector2, b: Vector2) -> bool:
 	if a.x > b.x || a.y > b.y:
 		return true
 	return false
 
-## checks if a.x or a.y is less than b.x or b.y
+## Checks if a.x or a.y is less than b.x or b.y.
+## Helper for checking if coordinates are within grid bounds
 func is_less_vec(a: Vector2, b: Vector2) -> bool:
 	if a.x < b.x || a.y < b.y:
 		return true
 	return false
 
-## get grid coord from global position
+## Get grid coord from global position
 func global_to_grid(position: Vector2) -> Vector2i:
 	return Vector2i((position - global_position) / cell_size)

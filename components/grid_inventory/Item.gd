@@ -19,11 +19,13 @@ var last_grid_coords: Array
 		if %Sprite:
 			%Sprite.texture = value
 @export var item_sprite_size: Vector2 = Vector2(128,128)
-@export var collision_shape: RectangleShape2D:
+@export var collision_shape: Shape2D:
 	set(value):
 		collision_shape = value
-		var col_node = get_node("Sprite/Area2D/CollisionShape2D")
+		var col_node = %CollisionShape2D
 		if value:
+			if value is ConcavePolygonShape2D:
+				col_node.position = -item_sprite_size / 2
 			col_node.position = Vector2.ZERO
 			col_node.shape = value
 		else:
