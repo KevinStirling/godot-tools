@@ -6,22 +6,14 @@ extends Node2D
 var dragging: bool = false
 var parent_item: Item
 
-## position of the SubViewportContainer in main scene space
+## position of the SubViewportContainer in main scene space.
 var container_position: Vector2
 
 func _ready() -> void:
-	InventoryGlobals.drag_started.connect(show_preview)
-	InventoryGlobals.drag_stopped.connect(hide_preview)
-	InventoryGlobals.rotated.connect(rotate_preview)
+	InventoryEvents.drag_started.connect(show_preview)
+	InventoryEvents.drag_stopped.connect(hide_preview)
+	InventoryEvents.rotated.connect(rotate_preview)
 	container_position = get_viewport().get_parent().global_position
-
-## convert main scene position to SubViewport position
-func scene_to_viewport(pos: Vector2) -> Vector2:
-	return pos - container_position
-
-## convert SubViewport position to main scene position
-func viewport_to_scene(pos: Vector2) -> Vector2:
-	return pos + container_position
 
 func _process(delta):
 	if dragging:
@@ -35,6 +27,15 @@ func _process(delta):
 		else:
 			visible = true
 
+## convert main scene position to SubViewport position.
+func scene_to_viewport(pos: Vector2) -> Vector2:
+	return pos - container_position
+
+## convert SubViewport position to main scene position.
+func viewport_to_scene(pos: Vector2) -> Vector2:
+	return pos + container_position
+
+## shows a snapped copy of the item being dragged.
 func show_preview(item: Node, texture: Texture2D) -> void:
 	parent_item = item
 	%Preview.texture = parent_item.item_sprite
@@ -42,6 +43,7 @@ func show_preview(item: Node, texture: Texture2D) -> void:
 	dragging = true
 	visible = true
 
+## hides the preview of the dragged item. used when dragging has stopped.
 func hide_preview(position: Vector2) -> void:
 	if in_grid_bounds():
 		if !parent_item.colliding:
@@ -50,7 +52,7 @@ func hide_preview(position: Vector2) -> void:
 	dragging = false
 	visible = false
 
-## helper for inventory's grid bound check on current item being held
+## helper for inventory's grid bound check on current item being held.
 func in_grid_bounds() -> bool:
 	var item_origin = scene_to_viewport(parent_item.get_origin_offset())
 	if %Inventory.in_bounds(item_origin, parent_item.get_item_sprite_size()):

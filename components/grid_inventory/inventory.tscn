@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://10h7jwux2a0o"]
 
-[ext_resource type="Script" uid="uid://dw36mlf6vwdag" path="res://addons/GodotTools/components/grid_inventory/ItemPreview.gd" id="1_2mvvt"]
-[ext_resource type="Script" uid="uid://drkw2pgrjdw46" path="res://addons/GodotTools/components/grid_inventory/Inventory.gd" id="1_7hpp3"]
+[ext_resource type="Script" uid="uid://dw36mlf6vwdag" path="res://addons/GodotTools/components/grid_inventory/item_preview.gd" id="1_2mvvt"]
+[ext_resource type="Script" uid="uid://drkw2pgrjdw46" path="res://addons/GodotTools/components/grid_inventory/inventory.gd" id="1_7hpp3"]
 [ext_resource type="Texture2D" uid="uid://b3ytth7jqplxg" path="res://addons/GodotTools/icon.svg" id="3_ymtkw"]
-[ext_resource type="PackedScene" uid="uid://bb6havs81m3gw" path="res://addons/GodotTools/components/grid_inventory/Item.tscn" id="4_rw75v"]
+[ext_resource type="PackedScene" uid="uid://bb6havs81m3gw" path="res://addons/GodotTools/components/grid_inventory/item.tscn" id="4_rw75v"]
 [ext_resource type="Texture2D" uid="uid://dvbles4h2h8t2" path="res://addons/GodotTools/components/grid_inventory/1x2_128x256.png" id="5_ymtkw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymtkw"]

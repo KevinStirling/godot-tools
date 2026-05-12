@@ -6,12 +6,6 @@ extends Node2D
 
 var inventory_list: Array
 
-func add_to_inventory(item) -> void:
-	inventory_list.append(item)
-
-func remove_from_inventory(item) -> void:
-	inventory_list.erase(item)
-
 func _draw() -> void:
 	# draw the grid based on grid_size & cell_size
 	for row in range(grid_size.y + 1):
@@ -29,3 +23,9 @@ func in_bounds(position: Vector2, area: Vector2) -> bool:
 ## Get grid coord from global position
 func global_to_grid(position: Vector2) -> Vector2i:
 	return Vector2i((position - global_position) / cell_size)
+
+func add_to_inventory(item) -> void:
+	inventory_list.append(item)
+
+func remove_from_inventory(item) -> void:
+	inventory_list.erase(item)
