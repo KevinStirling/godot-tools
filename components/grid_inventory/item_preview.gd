@@ -17,11 +17,9 @@ func _ready() -> void:
 
 func _process(delta):
 	if dragging:
-		var grid_origin = %Inventory.global_position
 		var pos = scene_to_viewport(parent_item.get_origin_offset())
-		var local_pos = pos - grid_origin
-		var snapped_local = Vector2(snapped(local_pos.x, snap), snapped(local_pos.y, snap))
-		global_position = grid_origin + snapped_local + (parent_item.get_item_sprite_size() / 2)
+		var snapped_local = Vector2(snapped(pos.x, snap), snapped(pos.y, snap))
+		global_position = snapped_local + (parent_item.get_item_sprite_size() / 2)
 		if !in_grid_bounds() || parent_item.colliding:
 			visible = false
 		else:

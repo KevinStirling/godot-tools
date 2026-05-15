@@ -20,10 +20,6 @@ func in_bounds(position: Vector2, area: Vector2) -> bool:
 	var item_rect = Rect2(position, area)
 	return grid_rect.encloses(item_rect)
 
-## Get grid coord from global position
-func global_to_grid(position: Vector2) -> Vector2i:
-	return Vector2i((position - global_position) / cell_size)
-
 func add_to_inventory(item) -> void:
 	inventory_list.append(item)
 
