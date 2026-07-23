@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://biyul8332axcj"]
+
+[ext_resource type="Script" uid="uid://bmbcbmexuh8km" path="res://addons/godot-tools/menus/main_menu.gd" id="1_cxxhj"]
+
+[node name="MainMenu" type="Control" unique_id=1978020038]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cxxhj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2024982306]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.026041666
+anchor_top = 0.9521605
+anchor_right = 0.026041666
+anchor_bottom = 0.9521605
+offset_top = -136.0
+offset_right = 93.0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer" unique_id=1023607094]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Game"
+
+[node name="ContinueGameButton" type="Button" parent="VBoxContainer" unique_id=2085934499]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=83321297]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings
+"
+
+[node name="ExitGameButton" type="Button" parent="VBoxContainer" unique_id=1384403075]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"
